@@ -1,0 +1,18 @@
+export const predefinedsExercices = [
+  { name: 'Cable-crossover', muscleId: 1 },
+  { name: 'Crucifixo', muscleId: 1 },
+  { name: 'Pull over', muscleId: 1 },
+  { name: 'Supino apertado', muscleId: 1 },
+  { name: 'Abductor de coxas', muscleId: 6 },
+  { name: 'Adutor de coxas', muscleId: 6 },
+  { name: 'agachamento', muscleId: 6 },
+  { name: 'agachamento barra', muscleId: 6 },
+  { name: 'Dips', muscleId: 4 },
+  { name: 'Dips banco', muscleId: 4 },
+  { name: 'Dips maquina', muscleId: 4 },
+  { name: 'extensões triceps', muscleId: 4 },
+  { name: 'Curl', muscleId: 5 },
+  { name: 'Curl Larry Scott', muscleId: 5 },
+  { name: 'Curl concentrado', muscleId: 5 },
+  { name: 'Curl halter', muscleId: 5 },
+];
