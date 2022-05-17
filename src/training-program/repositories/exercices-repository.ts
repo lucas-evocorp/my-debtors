@@ -8,10 +8,25 @@ export class ExercicesRepository extends Repository<Exercice> {
     const newExercice = this.create({
       predefinedExerciceId: createExerciceDto.predefinedExerciceId,
       series: createExerciceDto.series,
-      trainingId: createExerciceDto.trainingId,
+      trainingProgramId: createExerciceDto.trainingId,
       weight: createExerciceDto.weight,
     });
 
     return this.save(newExercice);
+  }
+
+  async getUserExercicesByTrainingPrograms(trainingProgramId: number) {
+    return await this.createQueryBuilder('exercices')
+      .leftJoinAndSelect('exercices.predefinedExercice', 'predefinedExercice')
+      .where('exercices.trainingProgramId = :id', {
+        id: trainingProgramId,
+      })
+      .select([
+        'exercices.id',
+        'exercices.series',
+        'exercices.weight',
+        'predefinedExercice',
+      ])
+      .getMany();
   }
 }

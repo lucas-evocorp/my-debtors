@@ -5,26 +5,18 @@ import { Training } from '../entities/trainings.entity';
 import { TrainingiesRepository } from '../repositories/trainingies-repository';
 
 @Injectable()
-export class CreateTrainingUseCase {
-  constructor(private trainingiesRepository: TrainingiesRepository) {}
-  async createNewTraining(
-    createTrainingDto: CreateTrainingDto,
-    userAuth: IUserAuth,
-  ): Promise<Training> {
-    return await this.trainingiesRepository.createTrainingProgram(
-      createTrainingDto,
-      userAuth,
-    );
-  }
+export class CreateTrainingProgramUseCase {
+  constructor(private readonly trainingiesRepository: TrainingiesRepository) {}
 
   async execute(
     createTrainingDto: CreateTrainingDto,
     userAuth: IUserAuth,
   ): Promise<Training> {
-    const createTraining = await this.createNewTraining(
-      createTrainingDto,
-      userAuth,
-    );
+    const createTraining =
+      await this.trainingiesRepository.createTrainingProgram(
+        createTrainingDto,
+        userAuth,
+      );
 
     return createTraining;
   }

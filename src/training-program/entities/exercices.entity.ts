@@ -11,7 +11,7 @@ import { Training } from './trainings.entity';
 
 @Entity({ name: 'exercices' })
 export class Exercice {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
@@ -31,9 +31,9 @@ export class Exercice {
   predefinedExerciceId?: number;
 
   @ManyToOne(() => Training, (training) => training.exercice)
-  @JoinColumn({ name: 'training_id' })
+  @JoinColumn({ name: 'training_program_id' })
   training?: Training[];
 
-  @Column({ nullable: true, name: 'training_id' })
-  trainingId?: number;
+  @Column({ nullable: true, name: 'training_program_id' })
+  trainingProgramId?: number;
 }

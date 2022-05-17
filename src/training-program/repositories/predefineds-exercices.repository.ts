@@ -13,6 +13,7 @@ export class PredefinedsExercicesRepository extends Repository<PredefinedExercic
         'Exercicio buscado não esta entre os existentes!',
       );
     }
+
     return predefinedExercice;
   }
 }

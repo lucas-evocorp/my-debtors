@@ -9,9 +9,9 @@ import { TrainingiesRepository } from '../repositories/trainingies-repository';
 @Injectable()
 export class CreateExerciceUseCase {
   constructor(
-    private exercicesRepository: ExercicesRepository,
-    private predefinedsExercicesRepository: PredefinedsExercicesRepository,
-    private trainingiesRepository: TrainingiesRepository,
+    private readonly exercicesRepository: ExercicesRepository,
+    private readonly predefinedsExercicesRepository: PredefinedsExercicesRepository,
+    private readonly trainingiesRepository: TrainingiesRepository,
   ) {}
 
   async execute(
@@ -26,9 +26,9 @@ export class CreateExerciceUseCase {
       createExerciceDto.trainingId,
     );
 
-    if (trainingProgram.userId !== userAuth.userId) {
+    if (!trainingProgram || trainingProgram.userId !== userAuth.userId) {
       throw new NotFoundException(
-        'Ops.. o programa de treino que você tentou armazenar esse exercicio, não existe ou não esta armazenado em sua conta!',
+        'Ops.. o programa de treino que você tentou armazenar esse exercicio não existe!',
       );
     }
 

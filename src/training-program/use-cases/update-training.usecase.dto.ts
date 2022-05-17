@@ -4,8 +4,9 @@ import { UpdateTrainingDto } from '../dtos/update-training.dto';
 import { TrainingiesRepository } from '../repositories/trainingies-repository';
 
 @Injectable()
-export class UpdateTrainingUseCase {
-  constructor(private trainingiesRepository: TrainingiesRepository) {}
+export class UpdateTrainingProgramUseCase {
+  constructor(private readonly trainingiesRepository: TrainingiesRepository) {}
+
   async updateTraining(
     id: number,
     updateTrainingDto: UpdateTrainingDto,
