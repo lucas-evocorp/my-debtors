@@ -15,6 +15,8 @@ async function bootstrap() {
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('muscle-progression-api')
     .setVersion('1.0')
@@ -24,7 +26,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  app.enableCors();
   await app.listen(process.env.PORT);
 }
 bootstrap();
