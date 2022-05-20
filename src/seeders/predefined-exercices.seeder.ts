@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Seeder } from 'nestjs-seeder';
-import { Muscle } from 'src/training-program/entities/muscles.entity';
+import { Muscle } from 'src/training-histories/entities/muscles.entity';
 import { Repository } from 'typeorm';
 import { predefinedMuscles } from './predefineds-entities/predefined-muscles';
 
@@ -23,8 +23,6 @@ export class InsertMusclesSeeder implements Seeder {
           .into(Muscle)
           .values(predefinedMuscles)
           .execute();
-      } else {
-        //
       }
     } catch (error) {
       throw new Error('seeder error');

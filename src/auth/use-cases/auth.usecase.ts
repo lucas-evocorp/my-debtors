@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { LoginDto } from '../dtos/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { UsersRepository } from 'src/users/repositories/users-repository';
+import { UsersRepository } from 'src/users/repositories/users.repository';
 
 export interface IValidateUserResponse {
   user: {

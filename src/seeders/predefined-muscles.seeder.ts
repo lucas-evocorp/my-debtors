@@ -1,8 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Seeder, DataFactory } from 'nestjs-seeder';
-import { Muscle } from 'src/training-program/entities/muscles.entity';
-import { PredefinedExercice } from 'src/training-program/entities/predefined-exercices.entity';
+import { PredefinedExercice } from 'src/training-histories/entities/predefined-exercices.entity';
 import { createQueryBuilder, Repository } from 'typeorm';
 import { predefinedsExercices } from './predefineds-entities/predefined-exercices.seeder';
 import { predefinedMuscles } from './predefineds-entities/predefined-muscles';

@@ -2,13 +2,12 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { TrainingsModule } from './training-program/trainings.module';
+import { TrainingHistoriesModule } from './training-histories/training-history.module';
+import { TrainingiesFoldersModule } from './trainingies-folders/training-folders.module';
+import { TrainingiesProgramsModule } from './trainingies-programs/trainings.module';
 import { UsersModule } from './users/users.module';
 @Module({
   imports: [
-    AuthModule,
-    UsersModule,
-    TrainingsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.PG_HOST,
@@ -24,6 +23,12 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+
+    TrainingHistoriesModule,
+    AuthModule,
+    UsersModule,
+    TrainingiesFoldersModule,
+    TrainingiesProgramsModule,
   ],
   controllers: [],
   providers: [],

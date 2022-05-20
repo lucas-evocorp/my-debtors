@@ -1,4 +1,5 @@
-import { Training } from 'src/training-program/entities/trainings.entity';
+import { TrainingFolder } from 'src/trainingies-folders/entities/trainingies-folders.entity';
+import { TrainingProgram } from 'src/trainingies-programs/entities/trainingies-programs.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'users' })
@@ -15,6 +16,6 @@ export class User {
   @Column({ name: 'password' })
   password: string;
 
-  @OneToMany(() => Training, (training) => training.user)
-  training: Training[];
+  @OneToMany(() => TrainingFolder, (trainingFolder) => trainingFolder.users)
+  trainingFolders: TrainingFolder[];
 }

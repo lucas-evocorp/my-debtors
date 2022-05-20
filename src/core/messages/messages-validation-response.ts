@@ -22,4 +22,8 @@ export const messagesValidation = {
   isString: (param: string) => {
     return `O campo ${param} precisa ser um texto`;
   },
+
+  isUUID: (param: string) => {
+    return `O campo ${param} precisa estar no formato UUID`;
+  },
 };

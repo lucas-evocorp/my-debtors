@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { User } from '../entities/users.entity';
-import { UsersRepository } from '../repositories/users-repository';
+import { UsersRepository } from '../repositories/users.repository';
 
 @Injectable()
 export class CreateUserUseCase {

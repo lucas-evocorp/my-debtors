@@ -1,7 +1,7 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { seeder } from 'nestjs-seeder';
-import { Muscle } from 'src/training-program/entities/muscles.entity';
-import { PredefinedExercice } from 'src/training-program/entities/predefined-exercices.entity';
+import { Muscle } from 'src/training-histories/entities/muscles.entity';
+import { PredefinedExercice } from 'src/training-histories/entities/predefined-exercices.entity';
 import { InsertMusclesSeeder } from './predefined-exercices.seeder';
 import { InsertPredefinedsExercicesSeeder } from './predefined-muscles.seeder';
 

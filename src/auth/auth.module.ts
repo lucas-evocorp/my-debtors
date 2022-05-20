@@ -6,7 +6,7 @@ import { AuthUseCase } from './use-cases/auth.usecase';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersRepository } from 'src/users/repositories/users-repository';
+import { UsersRepository } from 'src/users/repositories/users.repository';
 import { JwtStrategy } from './strategies/jwt-strategy';
 
 @Module({
