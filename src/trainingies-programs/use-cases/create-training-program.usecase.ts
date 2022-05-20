@@ -22,6 +22,8 @@ export class CreateTrainingProgramUseCase {
         createTrainingDto.trainingFolderId,
       );
 
+    console.log(trainingFolder);
+
     if (!trainingFolder || trainingFolder.userId !== userAuth.userId) {
       throw new NotFoundException(
         'A pasta na qual você esta tentando armazenar esse programa de treinamentos, não existe!',

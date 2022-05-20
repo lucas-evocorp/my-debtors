@@ -30,6 +30,6 @@ export class TrainingFolder {
   @JoinColumn({ name: 'user_id' })
   users: User[];
 
-  @Column({ select: false, name: 'user_id' })
+  @Column({ name: 'user_id' })
   userId: string;
 }
