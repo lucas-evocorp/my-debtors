@@ -10,11 +10,7 @@ import { UsersModule } from './users/users.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.PG_HOST,
-      port: parseInt(process.env.PG_PORT),
-      username: process.env.PG_USERNAME,
-      password: process.env.PG_PASSWORD,
-      database: process.env.PG_DATABASE,
+      url: process.env.DATABASE_URL,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
       logging: true,
