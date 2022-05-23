@@ -14,7 +14,10 @@ import { UsersModule } from './users/users.module';
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
       extra: {
-        ssl: process.env.NODE_ENV === 'development' ? false : true,
+        ssl:
+          process.env.NODE_ENV === 'development'
+            ? false
+            : { rejectUnauthorized: false },
       },
       logging: true,
     }),
