@@ -9,13 +9,16 @@ seeder({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.PG_HOST,
-      port: parseInt(process.env.PG_PORT),
-      username: 'postgres',
-      password: 'postgres',
-      database: process.env.PG_DATABASE,
+      url: process.env.DATABASE_URL,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
+      extra: {
+        ssl:
+          process.env.NODE_ENV === 'development'
+            ? false
+            : { rejectUnauthorized: false },
+      },
+      logging: true,
     }),
     TypeOrmModule.forFeature([Muscle, PredefinedExercice]),
   ],

@@ -8,7 +8,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserAuth } from 'src/core/decorators/user-auth';
 import { IResponseApiData } from 'src/core/interfaces/response-api-data';
 import { IUserAuth } from 'src/core/interfaces/user-auth.interface';
@@ -20,6 +20,7 @@ import { listUsersUseCase } from '../use-cases/list-users.usecase';
 import { UpdatePasswordUseCase } from '../use-cases/update-me-user-account-password.usecase';
 
 @Controller('users')
+@ApiBearerAuth()
 @ApiTags('users')
 export class UsersController {
   constructor(
