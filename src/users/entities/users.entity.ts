@@ -19,6 +19,8 @@ export class User {
   @Column()
   admin: boolean;
 
-  @OneToMany(() => TrainingFolder, (trainingFolder) => trainingFolder.users)
+  @OneToMany(() => TrainingFolder, (trainingFolder) => trainingFolder.users, {
+    onDelete: 'CASCADE',
+  })
   trainingFolders: TrainingFolder[];
 }

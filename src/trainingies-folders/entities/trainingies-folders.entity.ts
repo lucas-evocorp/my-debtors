@@ -26,7 +26,9 @@ export class TrainingFolder {
   )
   trainingPrograms: TrainingProgram[];
 
-  @ManyToOne(() => User, (user) => user.trainingFolders)
+  @ManyToOne(() => User, (user) => user.trainingFolders, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'user_id' })
   users: User[];
 

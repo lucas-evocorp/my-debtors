@@ -20,7 +20,9 @@ export class TrainingHistory {
   @Column('date', { name: 'created_at' })
   createdAt: Date;
 
-  @ManyToOne(() => TrainingProgram, (trainingProgram) => trainingProgram)
+  @ManyToOne(() => TrainingProgram, (trainingProgram) => trainingProgram, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'training_program_id' })
   TrainingPrograms: TrainingProgram[];
 

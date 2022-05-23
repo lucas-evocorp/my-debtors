@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Seeder, DataFactory } from 'nestjs-seeder';
 import { PredefinedExercice } from 'src/training-histories/entities/predefined-exercices.entity';
+import { PredefinedsExercicesRepository } from 'src/training-histories/repositories/predefineds-exercices.repository';
 import { createQueryBuilder, Repository } from 'typeorm';
 import { predefinedsExercices } from './predefineds-entities/predefined-exercices.seeder';
 import { predefinedMuscles } from './predefineds-entities/predefined-muscles';
@@ -9,8 +10,7 @@ import { predefinedMuscles } from './predefineds-entities/predefined-muscles';
 @Injectable()
 export class InsertPredefinedsExercicesSeeder implements Seeder {
   constructor(
-    @InjectRepository(PredefinedExercice)
-    private predefinedExercicesRepository: Repository<PredefinedExercice>,
+    private predefinedExercicesRepository: PredefinedsExercicesRepository,
   ) {}
   async seed(): Promise<any> {
     const predefinedExercicesCount = await this.predefinedExercicesRepository
@@ -27,7 +27,7 @@ export class InsertPredefinedsExercicesSeeder implements Seeder {
           .execute();
       }
     } catch (error) {
-      throw new Error('seeder Error');
+      throw new Error('musclesSeeder Error');
     }
   }
 

@@ -23,6 +23,7 @@ export class TrainingProgram {
   @ManyToOne(
     () => TrainingFolder,
     (trainingfolder) => trainingfolder.trainingPrograms,
+    { onDelete: 'CASCADE' },
   )
   @JoinColumn({ name: 'training_folder_id' })
   trainingFolders: TrainingFolder[];

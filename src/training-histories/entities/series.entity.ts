@@ -21,7 +21,9 @@ export class Serie {
   @Column()
   repetitions: number;
 
-  @ManyToOne(() => Exercice, (exercice) => exercice.series)
+  @ManyToOne(() => Exercice, (exercice) => exercice.series, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'exercice_id' })
   exercices: Exercice[];
 

@@ -28,6 +28,7 @@ export class Exercice {
   @ManyToOne(
     () => TrainingHistory,
     (trainingHistories) => trainingHistories.exercices,
+    { onDelete: 'CASCADE' },
   )
   @JoinColumn({ name: 'training_histories_id' })
   trainingHistories?: TrainingHistory[];
