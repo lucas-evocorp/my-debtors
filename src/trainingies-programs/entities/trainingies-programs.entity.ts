@@ -27,7 +27,7 @@ export class TrainingProgram {
   @JoinColumn({ name: 'training_folder_id' })
   trainingFolders: TrainingFolder[];
 
-  @Column({ select: false, nullable: false, name: 'training_folder_id' })
+  @Column({ nullable: false, name: 'training_folder_id' })
   trainingFolderId: string;
 
   @OneToMany(
