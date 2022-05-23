@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserAuth } from 'src/core/decorators/user-auth';
@@ -11,6 +19,7 @@ import { CreateTrainingHistoryDto } from '../dtos/create-training-history.dto';
 import { CreateExerciceSerieUseCase } from '../use-cases/create-exercice-serie.usecase';
 import { CreateExerciceUseCase } from '../use-cases/create-exercice.usecase';
 import { CreateTrainingHistoryUseCase } from '../use-cases/create-training-history.usecase';
+import { DeleteExerciceUseCase } from '../use-cases/delete-exercice.usecase';
 import { ListAllTrainingHistoryDataUseCase } from '../use-cases/list-all-training-history-data.usecase';
 import { ListMusclesAndExercicesUseCase } from '../use-cases/list-exercices-and-muscles.usecase';
 import { ListMusclesAndExercicesByTrainingHistoryUseCase } from '../use-cases/list-muscles-and-exercices-by-trainingies-programs.usecase';
@@ -27,6 +36,7 @@ export class TrainingHistoriesController {
     private readonly createExerciceUseCase: CreateExerciceUseCase,
     private readonly listExercicesByTrainingHistoryUseCase: ListMusclesAndExercicesByTrainingHistoryUseCase,
     private readonly listAllTrainingHistoriesData: ListAllTrainingHistoryDataUseCase,
+    private readonly deleteExerciceUseCase: DeleteExerciceUseCase,
   ) {}
 
   @Post('create')
@@ -94,5 +104,18 @@ export class TrainingHistoriesController {
     );
 
     return responseApiData(exercices);
+  }
+
+  @Delete('exercices/:exerciceId/delete')
+  async deleteExercice(
+    @UserAuth() userAuth: IUserAuth,
+    @Param('exerciceId') exerciceId: string,
+  ): Promise<IResponseApiData> {
+    const deleteExercice = await this.deleteExerciceUseCase.execute(
+      userAuth,
+      exerciceId,
+    );
+
+    return responseApiData(deleteExercice);
   }
 }

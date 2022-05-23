@@ -1,0 +1,17 @@
+import { Injectable } from '@nestjs/common';
+import { IUserAuth } from 'src/core/interfaces/user-auth.interface';
+import { DeleteUserDto } from '../dtos/delete-user.dto';
+import { UsersRepository } from '../repositories/users.repository';
+import * as bcrypt from 'bcrypt';
+
+@Injectable()
+export class DeleteMeUserAccountUseCase {
+  constructor(private readonly usersRepository: UsersRepository) {}
+
+  async execute(userAuth: IUserAuth, deleteUserDto: DeleteUserDto) {
+    const user = await this.usersRepository.getUser(userAuth);
+
+    if (bcrypt.compare(deleteUserDto.confirmPassword, user.password))
+      return await this.usersRepository.deleteUser(userAuth);
+  }
+}

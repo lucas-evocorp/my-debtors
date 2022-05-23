@@ -4,7 +4,7 @@ import { User } from '../entities/users.entity';
 import { UsersRepository } from '../repositories/users.repository';
 
 @Injectable()
-export class CreateUserUseCase {
+export class CreateMeUserAccountUseCase {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   async execute(createUserDto: CreateUserDto): Promise<User> {

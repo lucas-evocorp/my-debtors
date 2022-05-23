@@ -16,6 +16,9 @@ export class User {
   @Column({ name: 'password' })
   password: string;
 
+  @Column()
+  admin: boolean;
+
   @OneToMany(() => TrainingFolder, (trainingFolder) => trainingFolder.users)
   trainingFolders: TrainingFolder[];
 }

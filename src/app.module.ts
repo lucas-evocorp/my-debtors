@@ -13,6 +13,9 @@ import { UsersModule } from './users/users.module';
       url: process.env.DATABASE_URL,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
+      extra: {
+        ssl: process.env.NODE_ENV === 'development' ? false : true,
+      },
       logging: true,
     }),
 

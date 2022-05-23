@@ -12,6 +12,7 @@ import { TrainingHistoriesRepository } from './repositories/training-histories.r
 import { CreateExerciceSerieUseCase } from './use-cases/create-exercice-serie.usecase';
 import { CreateExerciceUseCase } from './use-cases/create-exercice.usecase';
 import { CreateTrainingHistoryUseCase } from './use-cases/create-training-history.usecase';
+import { DeleteExerciceUseCase } from './use-cases/delete-exercice.usecase';
 import { ListAllTrainingHistoryDataUseCase } from './use-cases/list-all-training-history-data.usecase';
 import { ListMusclesAndExercicesUseCase } from './use-cases/list-exercices-and-muscles.usecase';
 import { ListMusclesAndExercicesByTrainingHistoryUseCase } from './use-cases/list-muscles-and-exercices-by-trainingies-programs.usecase';
@@ -39,6 +40,7 @@ import { ListMusclesAndExercicesByTrainingHistoryUseCase } from './use-cases/lis
     ListMusclesAndExercicesUseCase,
     CreateExerciceSerieUseCase,
     ListAllTrainingHistoryDataUseCase,
+    DeleteExerciceUseCase,
   ],
 })
 export class TrainingHistoriesModule {}

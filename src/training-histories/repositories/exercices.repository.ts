@@ -1,4 +1,4 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { DeleteResult, EntityRepository, Repository } from 'typeorm';
 import { CreateExerciceDto } from '../dtos/create-exercice.dto';
 import { Exercice } from '../entities/exercices.entity';
 
@@ -7,7 +7,7 @@ export class ExercicesRepository extends Repository<Exercice> {
   constructor() {
     super();
   }
-  async createExercice(createExerciceDto: CreateExerciceDto) {
+  createExercice(createExerciceDto: CreateExerciceDto) {
     const newExercice = this.create({
       predefinedExerciceId: createExerciceDto.predefinedExerciceId,
       trainingHistoriesId: createExerciceDto.trainingHistoryId,
@@ -16,10 +16,10 @@ export class ExercicesRepository extends Repository<Exercice> {
     return this.save(newExercice);
   }
 
-  async getExercicesByTrainingHistory(
+  getExercicesByTrainingHistory(
     trainingHistoryId: string,
   ): Promise<Exercice[]> {
-    return await this.createQueryBuilder('exercices')
+    return this.createQueryBuilder('exercices')
       .leftJoinAndSelect('exercices.predefinedExercice', 'predefinedExercice')
       .leftJoinAndSelect('exercices.series', 'serie')
       .leftJoinAndSelect('predefinedExercice.muscles', 'muscle')
@@ -30,5 +30,13 @@ export class ExercicesRepository extends Repository<Exercice> {
       })
       .select(['muscle.name', 'exercices.id', 'predefinedExercice', 'serie'])
       .getMany();
+  }
+
+  getExercice(id: string): Promise<Exercice> {
+    return this.findOne(id);
+  }
+
+  deleteExercice(id: string): Promise<DeleteResult> {
+    return this.delete(id);
   }
 }

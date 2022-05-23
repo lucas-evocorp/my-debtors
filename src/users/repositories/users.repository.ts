@@ -2,6 +2,8 @@ import { EntityRepository, Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { User } from '../entities/users.entity';
 import * as bcrypt from 'bcrypt';
+import { UpdatePasswordDto } from '../dtos/update-password.dto';
+import { IUserAuth } from 'src/core/interfaces/user-auth.interface';
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {
@@ -15,13 +17,40 @@ export class UsersRepository extends Repository<User> {
       name: createUserDto.name,
       email: createUserDto.email,
       password: hashedPassword,
+      admin: false,
     });
 
     return this.save(user);
   }
 
-  async getUserByEmail(email: string): Promise<User> {
-    const user = await this.findOne({ email });
+  getUserByEmail(email: string): Promise<User> {
+    const user = this.findOne({ email });
     return user;
+  }
+
+  async updatePassword(
+    userAuth: IUserAuth,
+    updatePasswordDto: UpdatePasswordDto,
+  ) {
+    const hashedNewPassword = await bcrypt.hash(
+      updatePasswordDto.newPassword,
+      parseInt(process.env.SALT_OR_ROUNDS),
+    );
+
+    const user = this.create({ password: hashedNewPassword });
+
+    return this.update(userAuth.userId, user);
+  }
+
+  getUser(userAuth: IUserAuth) {
+    return this.findOne(userAuth.userId);
+  }
+
+  deleteUser(userAuth: IUserAuth) {
+    return this.delete(userAuth.userId);
+  }
+
+  findUsers() {
+    return this.find();
   }
 }
