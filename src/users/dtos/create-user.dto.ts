@@ -7,7 +7,7 @@ export class CreateUserDto {
   @IsNotBlank({ message: Msgs.isNotBlank('name') })
   name: string;
 
-  @IsEmail({}, { message: 'Por favor, insira um email valido!' })
+  @IsEmail({}, { message: Msgs.isEmail() })
   @IsNotBlank({ message: Msgs.isNotBlank('email') })
   @MinLength(8, { message: Msgs.minLength('password', 8) })
   email: string;

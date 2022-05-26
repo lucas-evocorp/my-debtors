@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { TrainingHistoriesModule } from './training-histories/training-history.module';
-import { TrainingiesFoldersModule } from './trainingies-folders/training-folders.module';
-import { TrainingiesProgramsModule } from './trainingies-programs/trainings.module';
+import { DebtorsModule } from './debtors/debtors.module';
 import { UsersModule } from './users/users.module';
 @Module({
   imports: [
@@ -19,18 +18,18 @@ import { UsersModule } from './users/users.module';
             ? false
             : { rejectUnauthorized: false },
       },
-      logging: true,
+      logging: false,
     }),
 
     ConfigModule.forRoot({
       isGlobal: true,
     }),
 
-    TrainingHistoriesModule,
+    EventEmitterModule.forRoot(),
+
     AuthModule,
     UsersModule,
-    TrainingiesFoldersModule,
-    TrainingiesProgramsModule,
+    DebtorsModule,
   ],
   controllers: [],
   providers: [],

@@ -18,7 +18,7 @@ async function bootstrap() {
   app.enableCors();
 
   const config = new DocumentBuilder()
-    .setTitle('muscle-progression-api')
+    .setTitle('my-debtors-api')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

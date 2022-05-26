@@ -26,4 +26,12 @@ export const messagesValidation = {
   isUUID: (param: string) => {
     return `O campo ${param} precisa estar no formato UUID`;
   },
+
+  isEmail: () => {
+    return `Por favor, insira um Email valido!`;
+  },
+
+  isPositive: (param: string) => {
+    return `o campo ${param} precisa receber um numero positivo!`;
+  },
 };

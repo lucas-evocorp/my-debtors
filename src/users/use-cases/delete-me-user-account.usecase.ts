@@ -3,12 +3,16 @@ import { IUserAuth } from 'src/core/interfaces/user-auth.interface';
 import { DeleteUserDto } from '../dtos/delete-user.dto';
 import { UsersRepository } from '../repositories/users.repository';
 import * as bcrypt from 'bcrypt';
+import { DeleteResult } from 'typeorm';
 
 @Injectable()
 export class DeleteMeUserAccountUseCase {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  async execute(userAuth: IUserAuth, deleteUserDto: DeleteUserDto) {
+  async execute(
+    userAuth: IUserAuth,
+    deleteUserDto: DeleteUserDto,
+  ): Promise<DeleteResult> {
     const user = await this.usersRepository.getUser(userAuth);
 
     if (

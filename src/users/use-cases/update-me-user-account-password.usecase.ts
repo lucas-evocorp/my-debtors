@@ -3,12 +3,16 @@ import { IUserAuth } from 'src/core/interfaces/user-auth.interface';
 import { UpdatePasswordDto } from '../dtos/update-password.dto';
 import { UsersRepository } from '../repositories/users.repository';
 import * as bcrypt from 'bcrypt';
+import { UpdateResult } from 'typeorm';
 
 @Injectable()
 export class UpdatePasswordUseCase {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  async execute(userAuth: IUserAuth, updatePasswordDto: UpdatePasswordDto) {
+  async execute(
+    userAuth: IUserAuth,
+    updatePasswordDto: UpdatePasswordDto,
+  ): Promise<UpdateResult> {
     const user = await this.usersRepository.getUser(userAuth);
 
     console.log(updatePasswordDto);

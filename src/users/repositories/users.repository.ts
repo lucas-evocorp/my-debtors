@@ -1,4 +1,9 @@
-import { EntityRepository, Repository } from 'typeorm';
+import {
+  DeleteResult,
+  EntityRepository,
+  Repository,
+  UpdateResult,
+} from 'typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { User } from '../entities/users.entity';
 import * as bcrypt from 'bcrypt';
@@ -31,7 +36,7 @@ export class UsersRepository extends Repository<User> {
   async updatePassword(
     userAuth: IUserAuth,
     updatePasswordDto: UpdatePasswordDto,
-  ) {
+  ): Promise<UpdateResult> {
     const hashedNewPassword = await bcrypt.hash(
       updatePasswordDto.newPassword,
       parseInt(process.env.SALT_OR_ROUNDS),
@@ -42,15 +47,15 @@ export class UsersRepository extends Repository<User> {
     return this.update(userAuth.userId, user);
   }
 
-  getUser(userAuth: IUserAuth) {
+  getUser(userAuth: IUserAuth): Promise<User> {
     return this.findOne(userAuth.userId);
   }
 
-  deleteUser(userAuth: IUserAuth) {
+  deleteUser(userAuth: IUserAuth): Promise<DeleteResult> {
     return this.delete(userAuth.userId);
   }
 
-  findUsers() {
+  findUsers(): Promise<User[]> {
     return this.find();
   }
 }

@@ -1,5 +1,4 @@
-import { TrainingFolder } from 'src/trainingies-folders/entities/trainingies-folders.entity';
-import { TrainingProgram } from 'src/trainingies-programs/entities/trainingies-programs.entity';
+import { Debtor } from 'src/debtors/entities/debtors.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'users' })
@@ -19,8 +18,6 @@ export class User {
   @Column()
   admin: boolean;
 
-  @OneToMany(() => TrainingFolder, (trainingFolder) => trainingFolder.users, {
-    onDelete: 'CASCADE',
-  })
-  trainingFolders: TrainingFolder[];
+  @OneToMany(() => Debtor, (debtor) => debtor.users)
+  debtors: Debtor[];
 }

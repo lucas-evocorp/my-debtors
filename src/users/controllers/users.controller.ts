@@ -37,14 +37,8 @@ export class UsersController {
     @Body() createUserDto: CreateUserDto,
   ): Promise<IResponseApiData> {
     const user = await this.createMeUserAccountUseCase.execute(createUserDto);
-    return responseApiData(
-      {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-      },
-      'Usuario criado com sucesso',
-    );
+
+    return responseApiData({ user }, 'Usuario criado com sucesso');
   }
 
   @UseGuards(AuthGuard('jwt'))
